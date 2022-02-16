@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.android.politicalpreparedness.R
 
 class ElectionsFragment: Fragment() {
 
@@ -23,7 +24,7 @@ class ElectionsFragment: Fragment() {
         //TODO: Initiate recycler adapters
 
         //TODO: Populate recycler adapters
-
+        return inflater.inflate(R.layout.fragment_election, container, false)
     }
 
     //TODO: Refresh adapters when fragment loads

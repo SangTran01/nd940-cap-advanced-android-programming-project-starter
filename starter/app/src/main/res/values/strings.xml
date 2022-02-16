@@ -3,5 +3,10 @@
     <string name="app_name">Political Preparedness</string>
 
     <!-- TODO: Add necessary string values -->
-
+    <string name="follow_election_button">Follow Election</string>
+    <string name="upcoming_elections_button">Upcoming Elections</string>
+    <string name="find_representatives_button">Find My Representatives</string>
+    <string name="Representative_search">Representative Search</string>
+    <string name="my_representatives">My Representatives</string>
+    <string name="use_my_location_button">Use my Location</string>
 </resources>

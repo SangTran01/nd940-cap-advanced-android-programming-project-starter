@@ -3,6 +3,7 @@ package com.example.android.politicalpreparedness.election
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import com.example.android.politicalpreparedness.R
 
 class VoterInfoFragment : Fragment() {
 
@@ -24,7 +25,7 @@ class VoterInfoFragment : Fragment() {
 
         //TODO: Handle save button UI state
         //TODO: cont'd Handle save button clicks
-
+        return inflater.inflate(R.layout.fragment_voter_info,container, false)
     }
 
     //TODO: Create method to load URL intents
