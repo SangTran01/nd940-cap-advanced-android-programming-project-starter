@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="representative"
+            type="com.example.android.politicalpreparedness.representative.model.Representative" />
+
+        <variable
+            name="representativePhoto"
+            type="android.widget.ImageView" />
+
+        <variable
+            name="facebookIcon"
+            type="android.widget.ImageView" />
+
+        <variable
+            name="twitterIcon"
+            type="android.widget.ImageView" />
+
+        <variable
+            name="wwwIcon"
+            type="android.widget.ImageView" />
+
+        <variable
+            name="clicklistener"
+            type="com.example.android.politicalpreparedness.representative.adapter.RepresentativeListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
