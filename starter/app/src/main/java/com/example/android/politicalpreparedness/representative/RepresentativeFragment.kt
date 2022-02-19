@@ -50,20 +50,7 @@ class DetailFragment : Fragment() {
         })
 
 
-//        binding.representativeRecyclerview.adapter = adapter
-//
-//        val appBarLayout: AppBarLayout = findViewById(R.id.appbar_layout)
-////        val motionLayout: MotionLayout = findViewById(R.id.motion_layout)
-//
-//        val motionLayout = binding.motionLayout
-//
-//        val listener = AppBarLayout.OnOffsetChangedListener { unused, verticalOffset ->
-//            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
-//            Log.d("Step8", "coordinateMotion: ${seekPosition}")
-//            motionLayout.progress = seekPosition
-//        }
-
-//        appBarLayout.addOnOffsetChangedListener(listener)
+        binding.representativeRecyclerview.adapter = adapter
 
 //        binding.representativeButton.setOnClickListener { navToRepresentatives() }
 //        binding.upcomingButton.setOnClickListener { navToElections() }
@@ -96,9 +83,21 @@ class DetailFragment : Fragment() {
 
         )
         adapter.submitList(list)
-        adapter.notifyDataSetChanged()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val appBarLayout: AppBarLayout = view.findViewById(R.id.appbar_layout)
+        val motionLayout: MotionLayout = view.findViewById(R.id.motion_layout)
+
+        val listener = AppBarLayout.OnOffsetChangedListener { unused, verticalOffset ->
+            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
+            motionLayout.progress = seekPosition
+        }
+
+        appBarLayout.addOnOffsetChangedListener(listener)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
