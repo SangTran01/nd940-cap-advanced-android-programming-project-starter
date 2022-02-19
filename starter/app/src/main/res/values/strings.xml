@@ -31,4 +31,6 @@
     <string name="error_adding_geofence">Error Happened, Can\'t Add Geofence</string>
     <string name="login_btn">Login</string>
     <string name="Settings">Settings</string>
+    <string name="use_my_location">Use My Location</string>
+    <string name="find_my_representatives">Find My Representatives</string>
 </resources>

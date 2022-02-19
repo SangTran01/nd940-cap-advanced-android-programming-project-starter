@@ -16,7 +16,7 @@ import com.example.android.politicalpreparedness.network.models.Channel
 import com.example.android.politicalpreparedness.representative.model.Representative
 import java.util.zip.Inflater
 
-class RepresentativeListAdapter(val clickListener: RepresentativeListener) :
+class RepresentativeListAdapter(private val clickListener: RepresentativeListener) :
     ListAdapter<Representative, RepresentativeViewHolder>(RepresentativeDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepresentativeViewHolder {
@@ -52,8 +52,6 @@ class RepresentativeViewHolder(val binding: ViewHolderRepresentativeBinding) :
             return RepresentativeViewHolder(binding)
         }
     }
-
-    //TODO: Add companion object to inflate ViewHolder (from)
 
 //    private fun showSocialLinks(channels: List<Channel>) {
 //        val facebookUrl = getFacebookUrl(channels)
@@ -113,7 +111,3 @@ class RepresentativeListener(val listener: (representative: Representative) -> U
         listener(representative)
     }
 }
-
-//TODO: Create RepresentativeDiffCallback
-
-//TODO: Create RepresentativeListener
