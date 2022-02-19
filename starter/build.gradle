@@ -1,5 +1,5 @@
 buildscript {
-    ext.myApiKey = "AIzaSyAskbM8bmKRWBwW9P-vW-myINas8RXT-Ag"
+    ext.myApiKey = ""
     ext {
         version_android_gradle_plugin = "4.0.1"
         version_core = '1.7.0'
