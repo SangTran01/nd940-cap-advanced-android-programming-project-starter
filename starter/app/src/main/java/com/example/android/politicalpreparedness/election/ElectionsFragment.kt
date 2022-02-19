@@ -5,28 +5,90 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.android.politicalpreparedness.R
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.android.politicalpreparedness.database.ElectionDatabase
+import com.example.android.politicalpreparedness.databinding.FragmentElectionBinding
+import com.example.android.politicalpreparedness.election.adapter.ElectionListAdapter
+import com.example.android.politicalpreparedness.election.adapter.ElectionListener
 
-class ElectionsFragment: Fragment() {
+class ElectionsFragment : Fragment() {
 
-    //TODO: Declare ViewModel
+    lateinit var viewModel: ElectionsViewModel
+    lateinit var binding: FragmentElectionBinding
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        //TODO: Add ViewModel values and create ViewModel
+        binding = FragmentElectionBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
 
-        //TODO: Add binding values
+        val database = ElectionDatabase.getInstance(requireActivity())
+        val app = requireNotNull(this.activity).application
+        val factory = ElectionsViewModelFactory(app, database)
+        viewModel = ViewModelProvider(this, factory).get(ElectionsViewModel::class.java)
 
-        //TODO: Link elections to voter info
+        binding.viewModel = viewModel
 
-        //TODO: Initiate recycler adapters
+        val electionListAdapter = ElectionListAdapter(ElectionListener {
+            findNavController().navigate(
+                ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(
+                    it.id,
+                    it.division
+                )
+            )
+        })
 
-        //TODO: Populate recycler adapters
-        return inflater.inflate(R.layout.fragment_election, container, false)
+        val savedListAdapter = ElectionListAdapter(ElectionListener {
+            findNavController().navigate(
+                ElectionsFragmentDirections.actionElectionsFragmentToVoterInfoFragment(
+                    it.id,
+                    it.division
+                )
+            )
+        })
+
+        binding.upcomingElectionsRecyclerview.adapter = electionListAdapter
+        binding.savedElectionsRecyclerview.adapter = savedListAdapter
+
+        viewModel.upcomingElections.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                //update recycler adapter
+                electionListAdapter.submitList(it.elections)
+            }
+        })
+
+        viewModel.savedElections.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                //update recycler adapter
+                savedListAdapter.submitList(it)
+            }
+        })
+
+        viewModel.showLoading.observe(viewLifecycleOwner, {
+            it?.let {
+                if (it) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+        })
+
+        return binding.root
     }
 
-    //TODO: Refresh adapters when fragment loads
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.refreshElections()
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.onClear()
+    }
 }

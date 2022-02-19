@@ -12,17 +12,23 @@ import com.example.android.politicalpreparedness.election.adapter.ElectionListAd
 import com.example.android.politicalpreparedness.election.adapter.ElectionListener
 
 class LaunchFragment : Fragment() {
+    lateinit var binding: FragmentLaunchBinding
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val binding = FragmentLaunchBinding.inflate(inflater)
+        binding = FragmentLaunchBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
         binding.representativeButton.setOnClickListener { navToRepresentatives() }
         binding.upcomingButton.setOnClickListener { navToElections() }
 
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.unbind()
     }
 
     private fun navToElections() {

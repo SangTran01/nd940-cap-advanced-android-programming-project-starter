@@ -23,11 +23,7 @@
         android:id="@+id/representativeFragment"
         android:name="com.example.android.politicalpreparedness.representative.DetailFragment"
         android:label="fragment_representative"
-        tools:layout="@layout/fragment_representative" >
-        <action
-            android:id="@+id/action_representativeFragment_to_voterInfoFragment"
-            app:destination="@id/voterInfoFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_representative" />
 
     <fragment
         android:id="@+id/voterInfoFragment"
@@ -45,6 +41,10 @@
         android:id="@+id/electionsFragment"
         android:name="com.example.android.politicalpreparedness.election.ElectionsFragment"
         android:label="fragment_elections"
-        tools:layout="@layout/fragment_election" />
+        tools:layout="@layout/fragment_election" >
+        <action
+            android:id="@+id/action_electionsFragment_to_voterInfoFragment"
+            app:destination="@id/voterInfoFragment" />
+    </fragment>
 
 </navigation>

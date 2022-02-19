@@ -4,11 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <!-- TODO: Add data binding node for Voter Info ViewModel -->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.politicalpreparedness.election.VoterInfoViewModel" />
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.android.politicalpreparedness.MainActivity">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fadeVisible="@{viewModel.showLoading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- TODO: Add title to toolbar -->
         <androidx.appcompat.widget.Toolbar
@@ -17,6 +34,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
             android:singleLine="true"
+            android:background="@color/colorPrimaryDark"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- TODO: Add visual styling -->
@@ -26,15 +44,17 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_padding"
             app:layout_constraintTop_toBottomOf="@id/election_name"
-            tools:text="12 November 2055" />
+            tools:text="12 November 2055"/>
 
         <!-- TODO: Add visual styling and content -->
         <TextView
             android:id="@+id/state_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/election_date"
-            app:layout_constraintStart_toStartOf="@id/election_date" />
+            android:layout_marginTop="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/election_date"
+            app:layout_constraintTop_toBottomOf="@id/election_date" />
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
@@ -42,8 +62,9 @@
             android:id="@+id/state_locations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/state_header"
-            app:layout_constraintStart_toStartOf="@id/election_date" />
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/election_date"
+            app:layout_constraintTop_toBottomOf="@id/state_header" />
 
         <!-- TODO: Add click binding to open web URL -->
         <!-- TODO: Add visual styling and content -->
@@ -77,6 +98,24 @@
             app:layout_constraintStart_toStartOf="@id/election_date" />
 
         <!-- TODO: Add button to save election to Room -->
+        <Button
+            android:id="@+id/follow_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Follow Election"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:padding="8dp"
+            android:textColor="@color/white"
+            app:setFollowState="@{viewModel.savedElection}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

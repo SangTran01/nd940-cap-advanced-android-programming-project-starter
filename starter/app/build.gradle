@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 32
@@ -22,6 +23,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField 'String', "API_KEY", "\"${myApiKey}\""
         }
     }
     androidExtensions {
@@ -72,6 +76,7 @@ dependencies {
     //TODO: Add Glide Implementation
 
     //Room
+    implementation "androidx.room:room-ktx:$version_room"
     implementation "androidx.room:room-runtime:$version_room"
     kapt "androidx.room:room-compiler:$version_room"
 

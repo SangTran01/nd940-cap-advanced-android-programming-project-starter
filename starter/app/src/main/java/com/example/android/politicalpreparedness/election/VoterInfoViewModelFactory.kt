@@ -1,12 +1,18 @@
 package com.example.android.politicalpreparedness.election
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.android.politicalpreparedness.database.ElectionDatabase
+import java.lang.IllegalArgumentException
 
-//TODO: Create Factory to generate VoterInfoViewModel with provided election datasource
-class VoterInfoViewModelFactory: ViewModelProvider.Factory {
+class VoterInfoViewModelFactory(private val app: Application, private val database: ElectionDatabase): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        TODO("Not yet implemented")
+        if (modelClass.isAssignableFrom(VoterInfoViewModel::class.java)) {
+            return VoterInfoViewModel(app, database) as T
+        }
+
+        throw IllegalArgumentException("wrong view model")
     }
 
 }

@@ -12,27 +12,20 @@ import com.example.android.politicalpreparedness.network.models.Election
 import com.google.android.gms.tasks.Task
 
 class ElectionListAdapter(
-    private val clickListener: ElectionListener,
-    val viewModel: ElectionsViewModel
+    private val clickListener: ElectionListener
 ) : ListAdapter<Election, ElectionListAdapter.ElectionViewHolder>(ElectionDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ElectionViewHolder {
         return ElectionViewHolder.from(parent)
     }
 
-
     override fun onBindViewHolder(holder: ElectionViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(viewModel, item, clickListener)
+        holder.bind(item, clickListener)
     }
 
-    //TODO: Bind ViewHolder
-
-    //TODO: Add companion object to inflate ViewHolder (from)
-
-    class ElectionViewHolder(val binding: ViewHolderElectionBinding) : ViewHolder(binding.root) {
-        fun bind(viewModel: ElectionsViewModel, item: Election, clickListener: ElectionListener) {
-            binding.viewmodel = viewModel
+    class ElectionViewHolder(private val binding: ViewHolderElectionBinding) : ViewHolder(binding.root) {
+        fun bind(item: Election, clickListener: ElectionListener) {
             binding.election = item
             binding.clicklistener = clickListener
             binding.executePendingBindings()
@@ -50,12 +43,6 @@ class ElectionListAdapter(
     }
 
 }
-
-//TODO: Create ElectionViewHolder
-
-//TODO: Create ElectionDiffCallback
-
-//TODO: Create ElectionListener
 
 class ElectionListener(val listener: (election: Election) -> Unit) {
     fun onClick(election: Election) {

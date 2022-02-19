@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
             name="election"
             type="com.example.android.politicalpreparedness.network.models.Election" />
-
-        <variable
-            name="viewmodel"
-            type="com.example.android.politicalpreparedness.election.ElectionsViewModel" />
 
         <variable
             name="clicklistener"
@@ -17,9 +15,32 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clicklistener.onClick(election)}">
 
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{election.name}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="VIP Test Election" />
 
+        <TextView
+            android:id="@+id/textView_election_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{election.electionDay.toString()}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:text="Date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
