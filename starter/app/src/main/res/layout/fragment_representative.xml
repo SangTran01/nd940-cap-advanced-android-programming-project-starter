@@ -5,7 +5,6 @@
 
     <!-- TODO: Add data binding node -->
     <data>
-
         <variable
             name="viewModel"
             type="com.example.android.politicalpreparedness.representative.RepresentativeViewModel" />
@@ -40,8 +39,10 @@
                         android:layout_height="wrap_content"
                         android:text="@string/Representative_search"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="24sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +54,7 @@
                         android:autofillHints=""
                         android:ems="10"
                         android:hint="Address 1"
+                        android:text="@={viewModel.addressLine1}"
                         android:inputType="textPostalAddress"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -65,6 +67,7 @@
                         android:autofillHints=""
                         android:ems="10"
                         android:hint="Address 2"
+                        android:text="@={viewModel.addressLine2}"
                         android:inputType="textPostalAddress"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +79,7 @@
                         android:layout_height="wrap_content"
                         android:autofillHints=""
                         android:hint="City"
+                        android:text="@={viewModel.city}"
                         android:inputType="textPostalAddress"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +105,7 @@
                         android:hint="zip"
                         android:inputType="number"
                         android:maxLength="5"
+                        android:text="@={viewModel.zip}"
                         app:layout_constraintEnd_toStartOf="@id/state"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/city" />
@@ -109,10 +114,8 @@
                         android:id="@+id/button_search"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:background="@color/colorPrimaryDark"
                         android:text="@string/find_my_representatives"
@@ -126,10 +129,8 @@
                         android:id="@+id/button_location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
                         android:layout_marginBottom="16dp"
                         android:background="@color/colorPrimaryDark"
                         android:text="@string/use_my_location"
@@ -146,6 +147,8 @@
                 android:id="@+id/representative_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="My Representatives"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -156,6 +159,8 @@
             android:id="@+id/representative_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

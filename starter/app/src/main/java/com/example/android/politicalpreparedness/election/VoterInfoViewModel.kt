@@ -64,17 +64,7 @@ class VoterInfoViewModel(
             }
         }
     }
-    //TODO: Add var and methods to populate voter info
 
-    //TODO: Add var and methods to support loading URLs
-
-    //TODO: Add var and methods to save and remove elections to local database
-    //TODO: cont'd -- Populate initial state of save button to reflect proper action based on election saved status
-
-    /**
-     * Hint: The saved state can be accomplished in multiple ways. It is directly related to how elections are saved/removed from the database.
-     */
-    //TODO: Create functions to navigate to saved or upcoming election voter info
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
         val connectivityManager =

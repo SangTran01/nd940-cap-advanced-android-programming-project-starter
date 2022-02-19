@@ -31,18 +31,106 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clicklistener.onClick(representative)}">
 
-        <TextView
-            android:id="@+id/textView_rep_title"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/imageView_offical_photourl"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{representative.office.name}"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="president"/>
+            app:url="@{representative.official.photoUrl}"
+            app:context="@{context}"
+            tools:srcCompat="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/textView_office_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@{representative.office.name}"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView_offical_photourl"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="President" />
+
+        <TextView
+            android:id="@+id/textView_offical_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView_offical_photourl"
+            app:layout_constraintTop_toBottomOf="@+id/textView_office_name"
+            android:text="@{representative.official.name}"
+            tools:text="Donald J. Trump" />
+
+        <TextView
+            android:id="@+id/textView_offical_party"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView_offical_photourl"
+            app:layout_constraintTop_toBottomOf="@+id/textView_offical_name"
+            android:text="@{representative.official.party}"
+            tools:text="Democratic Party" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="150dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/textView_offical_party"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/textView_offical_party"
+            app:layout_constraintTop_toBottomOf="@+id/textView_office_name">
+
+            <ImageView
+                android:id="@+id/imageView_fb"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_twitter"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:channels="@{representative.official.channels}"
+                app:context="@{context}"
+                tools:srcCompat="@drawable/ic_facebook" />
+
+            <ImageView
+                android:id="@+id/imageView_twitter"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView_www"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageView_fb"
+                app:layout_constraintTop_toTopOf="parent"
+                app:channels="@{representative.official.channels}"
+                app:context="@{context}"
+                tools:srcCompat="@drawable/ic_twitter" />
+
+            <ImageView
+                android:id="@+id/imageView_www"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageView_twitter"
+                app:layout_constraintTop_toTopOf="parent"
+                app:urls="@{representative.official.urls}"
+                app:context="@{context}"
+                tools:srcCompat="@drawable/ic_www" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
